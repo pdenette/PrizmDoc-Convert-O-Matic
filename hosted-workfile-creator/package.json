@@ -1,0 +1,25 @@
+{
+  "name": "hosted-workfile-creator",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "dependencies": {
+    "async": "^2.6.1",
+    "request": "^2.88.0",
+    "ts-node": "^7.0.1",
+    "typescript": "^3.0.3"
+  },
+  "devDependencies": {
+    "@types/async": "^2.0.49",
+    "@types/request": "^2.47.1",
+    "@types/uuid": "^3.4.4",
+    "request-debug": "^0.2.0",
+    "tslint": "^5.11.0"
+  },
+  "scripts": {
+    "start": "ts-node index.ts",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Philliam Shatner",
+  "license": "MIT"
+}
