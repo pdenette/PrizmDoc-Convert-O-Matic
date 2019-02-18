@@ -1,5 +1,3 @@
-"use strict";
-
 import * as async from "async";
 import * as fs from "fs";
 import * as path from "path";
@@ -15,7 +13,7 @@ const baseURL = "http://philsubuntu1604:18681";
 function enumerateFiles() {
 	let files = [];
 
-	fs.readdirSync(path.join(__dirname, "..", "documents")).forEach(function (file) {
+	fs.readdirSync(path.join(__dirname, "..", "documents")).forEach(function(file) {
 		files.push(path.join(__dirname, "..", "documents", file));
 	});
 
@@ -35,7 +33,7 @@ function createWorkfile(file, callback) {
 			"Content-Type": "application/octet-stream",
 		},
 		"body": data
-	}, function (error, httpResponse, body) {
+	}, function(error, httpResponse, body) {
 		let parsedBody = JSON.parse(body);
 		let fileId = parsedBody["fileId"];
 
@@ -62,14 +60,14 @@ function createWorkfile(file, callback) {
 				}
 			}
 
-		}, function (error, httpResponse, body) {
+		}, function(error, httpResponse, body) {
 			let processId = body["processId"];
 
 			(function poll() {
 				requestJs.get({
 					"url": baseURL + "/v2/contentConverters/" + processId,
 
-				}, function (error, httpResponse, body) {
+				}, function(error, httpResponse, body) {
 					let parsedBody = JSON.parse(body);
 					let percentComplete = parsedBody["percentComplete"];
 
@@ -95,7 +93,7 @@ function createWorkfile(file, callback) {
 (function main() {
 	let files = enumerateFiles();
 
-	async.forEachLimit(files, 4, createWorkfile, function (error) {
+	async.forEachLimit(files, 5, createWorkfile, function(error) {
 		console.log(error || "Done!");
 	});
 })();
